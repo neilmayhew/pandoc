@@ -68,6 +68,26 @@ tests = [ testGroup "line blocks"
                                       , "</para>" ]
                                     )
           ]
+        , testGroup "headers"
+          [ "basic"      =: header 1 "Heading 1" <>
+                            para "Some text" <>
+                            header 2 "Heading 2" <>
+                            para "More text"
+                              =?> unlines
+                                    [ "<sect1 id=\"\">"
+                                    , "  <title>Heading 1</title>"
+                                    , "  <para>"
+                                    , "    Some text"
+                                    , "  </para>"
+                                    , "  <sect2 id=\"\">"
+                                    , "    <title>Heading 2</title>"
+                                    , "    <para>"
+                                    , "      More text"
+                                    , "    </para>"
+                                    , "  </sect2>"
+                                    , "</sect1>"
+                                    ]
+          ]
         , testGroup "compact lists"
           [ testGroup "bullet"
             [ "compact"    =: bulletList [plain "a", plain "b", plain "c"]
