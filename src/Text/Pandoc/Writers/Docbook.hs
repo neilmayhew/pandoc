@@ -140,9 +140,7 @@ elementToDocbook opts lvl (Sec _ _num (id',_,_) title elements) = do
       tag = case lvl of
                  -1                   -> "part"
                  0                    -> "chapter"
-                 n | n >= 1 && n <= 5 -> if version == DocBook5
-                                              then "section"
-                                              else "sect" ++ show n
+                 n | n >= 1 && n <= 5 -> "section"
                  _                    -> "simplesect"
       idName = if version == DocBook5
                  then "xml:id"
